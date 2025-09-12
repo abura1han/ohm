@@ -2,6 +2,8 @@
 
 import Head from "next/head";
 import { useState } from "react";
+import SyntaxHighlighter from "react-syntax-highlighter";
+import { nnfx } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
 const HomePage = () => {
   const [activeTab, setActiveTab] = useState<"config" | "dashboard">("config");
@@ -10,7 +12,7 @@ const HomePage = () => {
   const sampleConfig = `import { defineConfig } from 'ohm';
 
 export default defineConfig({
-  title: 'Analytics Dashboard',
+  title: 'Analytics Dashboard', // Page title
   components: [
     {
       type: 'chart',
@@ -332,9 +334,10 @@ export default defineConfig({
             <div className="mt-6 bg-white shadow overflow-hidden sm:rounded-lg">
               {activeTab === "config" ? (
                 <div className="px-4 py-5 sm:p-6">
-                  <pre className="bg-gray-800 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm">
-                    <code>{sampleConfig}</code>
-                  </pre>
+                  <SyntaxHighlighter language="typescript" style={nnfx}>
+                    {sampleConfig}
+                  </SyntaxHighlighter>
+                  {/* <pre className="bg-gray-800 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"></pre> */}
                 </div>
               ) : (
                 <div className="p-6">
